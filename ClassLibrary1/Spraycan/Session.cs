@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +19,7 @@ namespace BreakdanceBeach.Spraycan
         public static void NewSessionStart(String directory)
         {
             Bundler = new AssetBundleHandler(directory);
+            Optics.SessionStart();
         }
 
         public static void SessionEnd()

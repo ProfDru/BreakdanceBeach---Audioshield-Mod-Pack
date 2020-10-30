@@ -69,6 +69,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Spraycan\AssetBundleHandler.cs" />
+    <Compile Include="Spraycan\Optics.cs" />
     <Compile Include="Spraycan\PrimarySceneChanger.cs" />
     <Compile Include="Spraycan\Session.cs" />
     <Compile Include="Spraycan\SessionWatcher.cs" />
