@@ -8,86 +8,86 @@ using System.Text;
 
 namespace BreakdanceBeach.Interface
 {
-    /// <summary>
-    /// </summary>
-    /// 
-    [HarmonyPatch]
-    [HarmonyPatch(typeof(SongBrowser_FileSystem), "FinalizeLastExploreIntoFolderAsync")]
+	/// <summary>
+	/// </summary>
+	/// 
+	[HarmonyPatch]
+	[HarmonyPatch(typeof(SongBrowser_FileSystem), "FinalizeLastExploreIntoFolderAsync")]
 
-    public class FinalizeLastExploreWatcher
-    {
-        public static SongBrowser_FileSystem.FoldersFiles Postfix(SongBrowser_FileSystem.FoldersFiles __result)
-        {
-            __result.files = Shuffler.ShuffleList(__result.files);
-            return __result;
-        }
-    }
-
-
-    [HarmonyPatch]
-    [HarmonyPatch(typeof(SongBrowser_FileSystem), "ExploreCurrentFolder")]
-
-    public class ExploreCurrentFolderWatcher
-    {
-        public static SongBrowser_FileSystem.FoldersFiles Postfix(SongBrowser_FileSystem.FoldersFiles __result)
-        {
-            __result.files = Shuffler.ShuffleList(__result.files);
-            return __result;
-        }
-
-    }
+	public class FinalizeLastExploreWatcher
+	{
+		public static SongBrowser_FileSystem.FoldersFiles Postfix(SongBrowser_FileSystem.FoldersFiles __result)
+		{
+			__result.files = Shuffler.ShuffleList(__result.files);
+			return __result;
+		}
+	}
 
 
-    /// <summary>
-    /// </summary>
-    /// 
-    [HarmonyPatch]
-    [HarmonyPatch(typeof(SongSelector), "UpdateSongBrowserView")]
+	[HarmonyPatch]
+	[HarmonyPatch(typeof(SongBrowser_FileSystem), "ExploreCurrentFolder")]
 
-    public class BeforeUpdateBrowser
-    {
-        public static void Prefix()
-        {
-        }
+	public class ExploreCurrentFolderWatcher
+	{
+		public static SongBrowser_FileSystem.FoldersFiles Postfix(SongBrowser_FileSystem.FoldersFiles __result)
+		{
+			__result.files = Shuffler.ShuffleList(__result.files);
+			return __result;
+		}
 
-    }
-
+	}
 
 
-    /// <summary>
-    /// </summary>
-    /// 
-    [HarmonyPatch]
-    [HarmonyPatch(typeof(SongSelector_SongPane), "ChangePaneDisplayTo")]
+	/// <summary>
+	/// </summary>
+	/// 
+	[HarmonyPatch]
+	[HarmonyPatch(typeof(SongSelector), "UpdateSongBrowserView")]
 
-    public class SettingDirFiles
-    {
-        /// <summary>
-        /// Tell session manager that a new session has started
-        /// </summary>
-        public static void Prefix(ref Song[] songs)
-        {
-            songs = Shuffler.ShuffleList(songs);
-        }
-    }
+	public class BeforeUpdateBrowser
+	{
+		public static void Prefix()
+		{
+		}
 
-        /// <summary>
-        /// Shuffles the list of songs obtained from disk
-        /// </summary>
-        static class Shuffler
-    {
+	}
 
 
-        public static string[] ShuffleList(string[] songs)
-        {
-            Random rnd = new Random();
-            return songs.OrderBy(x => rnd.Next()).ToArray();
-        }
-        public static Song[] ShuffleList(Song[] songs)
-        {
-            Random rnd = new Random();
-            return songs.OrderBy(x => rnd.Next()).ToArray();
-        }
 
-    }
+	/// <summary>
+	/// </summary>
+	/// 
+	[HarmonyPatch]
+	[HarmonyPatch(typeof(SongSelector_SongPane), "ChangePaneDisplayTo")]
+
+	public class SettingDirFiles
+	{
+		/// <summary>
+		/// Tell session manager that a new session has started
+		/// </summary>
+		public static void Prefix(ref Song[] songs)
+		{
+			songs = Shuffler.ShuffleList(songs);
+		}
+	}
+
+	/// <summary>
+	/// Shuffles the list of songs obtained from disk
+	/// </summary>
+	static class Shuffler
+	{
+
+
+		public static string[] ShuffleList(string[] songs)
+		{
+			Random rnd = new Random();
+			return songs.OrderBy(x => rnd.Next()).ToArray();
+		}
+		public static Song[] ShuffleList(Song[] songs)
+		{
+			Random rnd = new Random();
+			return songs.OrderBy(x => rnd.Next()).ToArray();
+		}
+
+	}
 }
