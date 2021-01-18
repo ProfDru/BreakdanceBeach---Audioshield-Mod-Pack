@@ -10,11 +10,14 @@ namespace BreakdanceBeach.Interface
 	class MenuOverrides
 	{
 		/// <summary>
-		/// 
-		/// </summary>
+		/// Replace the songs output by social boards.
+		///</summary>
+		///<remarks>
+		///Social boards are sections of the menu that are supposed to pull results from the internet, such as Popular songs, or Popular with Friends. unfortunately, these no longer function properly, so this class is intended to contain all the code that handles replacing the output of each social board with something unique and useful. 
+		/// </remarks>
 		[HarmonyPatch]
 		[HarmonyPatch(typeof(SongSelector_SongPane), "BuildList_FromSocialBoard")]
-		public class Overrider
+		public class SocialBoardOverrider
 		{
 			const string GetRecentlyAddedSongQuery = "SELECT * FROM songs ORDER BY songs.songid DESC LIMIT 24";
 			const string GetRandomUnplayedSongQuery = "SELECT * FROM songs WHERE songs.lastplaytime IS NULL ORDER BY random() LIMIT 24";
