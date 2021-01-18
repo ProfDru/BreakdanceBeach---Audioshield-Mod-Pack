@@ -76,8 +76,6 @@ namespace BreakdanceBeach.Interface
 	/// </summary>
 	static class Shuffler
 	{
-
-
 		public static string[] ShuffleList(string[] songs)
 		{
 			Random rnd = new Random();
