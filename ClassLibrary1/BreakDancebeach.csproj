@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Breezy\Breezer.cs" />
     <Compile Include="HarmonyInitializer.cs" />
+    <Compile Include="Interface\SongGridTracker.cs" />
     <Compile Include="Interface\MenuOverrides.cs" />
     <Compile Include="Interface\ReverseMethods.cs" />
     <Compile Include="Interface\Shuffler.cs" />
