@@ -25,8 +25,16 @@ namespace BreakdanceBeach.Spraycan
 		public static void DestroySpectatorHud()
 		{
 			var spec_hud = GameObject.Find("Canvas_SpectatorHUD");
-			spec_hud.SetActive(false);
+			if (spec_hud)
+			{
+				spec_hud.SetActive(false);
+				Debug.Log("Spectator hud successfully destroyed");
+			}
+
+			else
+				Debug.LogWarning("Spec hud couldn't be found. Returning");
 		}
+
 		public static void SetSpectatorCamera()
 		{
 			var spec_cam_root = GameObject.Find("CameraHolder1");
@@ -45,7 +53,6 @@ namespace BreakdanceBeach.Spraycan
 			spec_container.SetActive(true);
 
 			spec_camera = spec_container.GetComponent<Camera>();
-
 			if (!spec_camera)
 			{
 				Debug.LogWarning("Spectator container couldn't be found.");
